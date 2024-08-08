@@ -1,39 +1,23 @@
-import reactImg from './assets/react-core-concepts.png';
-import componentsImg from './assets/components.png';
-import { CORE_CONCEPTS } from './data';
+import { useState } from 'react';
 
-const reactDescriptions = ['Fundamental', 'Crucial', 'Core'];
-function getRandomInt(max) {
-  return Math.floor(Math.random() * (max + 1));
-}
-
-
-
-function Header() {
-  const description = reactDescriptions[getRandomInt(2)];
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>React Essentials</h1>
-      <p>
-        {description} React concepts you will need for almost any app you are
-        going to build!
-      </p>
-    </header>
-  );
-}
-
-function CoreConcept(props) {
-  return (
-    <li>
-      <img src={props.image} alt={props.title} />
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-    </li>
-  );
-}
+import { CORE_CONCEPTS } from './data.js';
+import Header from './components/Header/Header.jsx';
+import CoreConcept from './components/CoreConcept.jsx';
+import TabButton from './components/TabButton.jsx';
+import { EXAMPLES } from './data.js';
 
 function App() {
+
+  const [ selectedTopic, setSelectedTopic ] = useState('components');
+
+  let tabContent = 'Please click a button';
+
+  function handleSelect(selectedButton) {
+    // selectedButton => 'components', 'jsx', 'props', 'state'
+    setSelectedTopic(selectedButton)
+    console.log(selectedTopic)
+  }
+
   return (
     <div>
       <Header />
@@ -51,6 +35,23 @@ function App() {
             <CoreConcept {...CORE_CONCEPTS[3]} />
           </ul>
         </section>
+        <section id="examples">
+              <h2>Examples</h2>
+              <menu>
+                <TabButton onSelect={() => handleSelect('components')}>Components</TabButton>
+                <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+                <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
+                <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+              </menu>
+              <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                  <code>{EXAMPLES[selectedTopic].code}</code>
+                </pre>
+              </div>
+        </section>
+            {selectedTopic}
       </main>
     </div>
   );
