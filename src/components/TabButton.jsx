@@ -1,4 +1,4 @@
-export default function CoreConcept({ children, onSelect }) {
+export default function CoreConcept({ children, onSelect, isSelected }) {
     
     // function handleClick() {
     //     console.log('hello world !!')
@@ -6,7 +6,7 @@ export default function CoreConcept({ children, onSelect }) {
 
     return (
     <li>
-        <button onClick={onSelect}>
+        <button className={isSelected ? 'active' : undefined} onClick={onSelect}>
             {children}
         </button>
     </li>);
