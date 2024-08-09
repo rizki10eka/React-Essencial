@@ -5,6 +5,14 @@ import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcept.jsx';
 import TabButton from './components/TabButton.jsx';
 import { EXAMPLES } from './data.js';
+import Todo from './components/Todo.jsx';
+
+
+export const DUMMY_TODOS = [
+  'Learn React',
+  'Practice React',
+  'Profit!'
+];
 
 function App() {
 
@@ -39,9 +47,9 @@ function App() {
           <h2>Time to get started!</h2>
           <ul>
 
-            { CORE_CONCEPTS.map((item) => (
-                <CoreConcept key={item.title} {...item} />
-            )) }
+            {CORE_CONCEPTS.map((item) => (
+              <CoreConcept key={item.title} {...item} />
+            ))}
 
             {/* <CoreConcept 
               title={CORE_CONCEPTS[0].title} 
@@ -65,6 +73,15 @@ function App() {
           {tabContent}
         </section>
         {selectedTopic}
+        <section id="todo">
+          <div><ul className='todo'>
+
+            {DUMMY_TODOS.map((item) => (
+              <Todo key={item} text={item} />
+            ))}
+
+          </ul></div>
+        </section>
       </main>
     </div>
   );
