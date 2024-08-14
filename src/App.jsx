@@ -3,6 +3,7 @@ import Header from './components/Header/Header.jsx';
 import CoreConcepts from './components/CoreConcepts.jsx';
 import Examples from './components/Examples.jsx';
 import Todos from './components/Todos.jsx';
+import ButtonTest from './components/ButtonTest.jsx';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <CoreConcepts />
         <Examples />
         <Todos />
+        <ButtonTest />
         
       </main>
     </Fragment>
